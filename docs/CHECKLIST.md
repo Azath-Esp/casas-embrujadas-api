@@ -1,6 +1,6 @@
 # Checklist de entregables EP3
 
-Evaluación Parcial 3 (40 %), DSY1104 Desarrollo Full Stack II. Autor: Dinko Ocampo.
+Evaluación Parcial 3 Desarrollo Full Stack II. Autor: Dinko Ocampo.
 
 ## Entregables
 
@@ -18,8 +18,8 @@ Evaluación Parcial 3 (40 %), DSY1104 Desarrollo Full Stack II. Autor: Dinko Oca
 
 ### Backend
 
-- [ ] Proyecto Spring Boot con dependencias de base de datos y seguridad
-- [ ] MySQL conectado desde el backend
+- [x] Proyecto Spring Boot con dependencias de base de datos y seguridad
+- [x] MySQL conectado desde el backend
 - [ ] Entidades, relaciones, repositorios y services
 - [ ] Lógica de negocio encapsulada y con pruebas
 - [ ] Controladores REST con CRUD y rutas versionadas
