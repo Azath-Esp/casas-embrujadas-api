@@ -35,7 +35,7 @@ mysql -u root -p --default-character-set=utf8mb4 -e "source database/schema.sql"
 mysql -u root -p --default-character-set=utf8mb4 -e "source database/data.sql"
 ```
 
-3. Copiar `.env` como `.env` y completar la contraseña de la base y el secreto JWT.
+3. Copiar `.env.example` como `.env` y completar la contraseña de la base y el secreto JWT.
 
 ## Ejecución
 
@@ -54,11 +54,10 @@ Pruebas unitarias, no necesitan base de datos:
 .\mvnw test
 ```
 
-Pruebas de integración de los repositorios y de las reglas de negocio. Necesitan MySQL en ejecución con los datos de `database/data.sql` recién cargados. Cada prueba deshace sus cambios al terminar:
+Pruebas de integración de los repositorios, de las reglas de negocio y de los controllers. Necesitan MySQL en ejecución con los datos de `database/data.sql` recién cargados. Cada prueba deshace sus cambios al terminar:
 
 ```
-.\mvnw test "-Dtest=RepositoriosIT"
-.\mvnw test "-Dtest=ServiciosIT"
+.\mvnw test "-Dtest=RepositoriosIT,ServiciosIT,ControllersIT"
 ```
 
 ## Usuarios de prueba

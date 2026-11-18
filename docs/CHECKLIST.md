@@ -22,7 +22,7 @@ Evaluación Parcial 3 Desarrollo Full Stack II. Autor: Dinko Ocampo.
 - [x] MySQL conectado desde el backend
 - [x] Entidades, relaciones, repositorios y services
 - [x] Lógica de negocio encapsulada y con pruebas
-- [ ] Controladores REST con CRUD y rutas versionadas
+- [x] Controladores REST con CRUD y rutas versionadas
 - [ ] Swagger documentando los endpoints
 
 ### Seguridad
