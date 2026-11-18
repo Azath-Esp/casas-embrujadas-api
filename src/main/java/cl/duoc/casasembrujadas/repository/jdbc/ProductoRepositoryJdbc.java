@@ -195,4 +195,16 @@ public class ProductoRepositoryJdbc implements ProductoRepository {
                 .toArray(MapSqlParameterSource[]::new);
         jdbc.batchUpdate("INSERT INTO producto_categoria (id_producto, id_categoria) VALUES (:idProducto, :idCategoria)", lote);
     }
+
+    @Override
+    public boolean tieneBoletaPagada(Long idProducto) {
+        String sql = """
+                SELECT COUNT(*)
+                FROM detalle_boleta d
+                JOIN boleta b ON b.id_boleta = d.id_boleta
+                WHERE d.id_producto = :id AND b.estado = 'PAGADA'
+                """;
+        Long total = jdbc.queryForObject(sql, Map.of("id", idProducto), Long.class);
+        return total != null && total > 0;
+    }
 }
