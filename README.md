@@ -35,7 +35,7 @@ mysql -u root -p --default-character-set=utf8mb4 -e "source database/schema.sql"
 mysql -u root -p --default-character-set=utf8mb4 -e "source database/data.sql"
 ```
 
-3. Copiar `.env.example` como `.env` y completar la contraseña de la base y el secreto JWT.
+3. Copiar `.env` como `.env` y completar la contraseña de la base y el secreto JWT.
 
 ## Ejecución
 
