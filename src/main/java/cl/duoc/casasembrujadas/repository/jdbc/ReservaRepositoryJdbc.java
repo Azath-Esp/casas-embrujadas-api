@@ -43,7 +43,7 @@ public class ReservaRepositoryJdbc implements ReservaRepository {
                 .addValue("fechaExpiracion", reserva.getFechaExpiracion())
                 .addValue("estado", reserva.getEstado().name());
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update(sql, parametros, llave);
+        jdbc.update(sql, parametros, llave, new String[] {"id_reserva"});
         return llave.getKey().longValue();
     }
 

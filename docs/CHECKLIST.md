@@ -19,7 +19,7 @@ Evaluación Parcial 3 Desarrollo Full Stack II. Autor: Dinko Ocampo.
 ### Backend
 
 - [x] Proyecto Spring Boot con dependencias de base de datos y seguridad
-- [x] MySQL conectado desde el backend
+- [x] Base de datos Neon conectada desde el backend
 - [x] Entidades, relaciones, repositorios y services
 - [x] Lógica de negocio encapsulada y con pruebas
 - [x] Controladores REST con CRUD y rutas versionadas

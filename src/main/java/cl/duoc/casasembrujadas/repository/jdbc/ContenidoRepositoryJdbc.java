@@ -41,7 +41,7 @@ public class ContenidoRepositoryJdbc implements ContenidoRepository {
                 VALUES (:url, :orden, :autor, :licencia, :urlFuente, :idProducto)
                 """;
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update(sql, parametrosDe(imagen), llave);
+        jdbc.update(sql, parametrosDe(imagen), llave, new String[] {"id_imagen"});
         return llave.getKey().longValue();
     }
 
@@ -87,7 +87,7 @@ public class ContenidoRepositoryJdbc implements ContenidoRepository {
                 VALUES (:titulo, :relato, :anioOrigen, :fuente, :idProducto)
                 """;
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update(sql, parametrosDe(mito), llave);
+        jdbc.update(sql, parametrosDe(mito), llave, new String[] {"id_mito"});
         return llave.getKey().longValue();
     }
 
@@ -130,11 +130,11 @@ public class ContenidoRepositoryJdbc implements ContenidoRepository {
         String sql = """
                 INSERT INTO ficha_paranormal (id_producto, tipo_entidad, horario_actividad, fenomenos_reportados, ultimo_avistamiento)
                 VALUES (:idProducto, :tipoEntidad, :horarioActividad, :fenomenos, :ultimoAvistamiento)
-                ON DUPLICATE KEY UPDATE
-                    tipo_entidad = :tipoEntidad,
-                    horario_actividad = :horarioActividad,
-                    fenomenos_reportados = :fenomenos,
-                    ultimo_avistamiento = :ultimoAvistamiento
+                ON CONFLICT (id_producto) DO UPDATE SET
+                    tipo_entidad = EXCLUDED.tipo_entidad,
+                    horario_actividad = EXCLUDED.horario_actividad,
+                    fenomenos_reportados = EXCLUDED.fenomenos_reportados,
+                    ultimo_avistamiento = EXCLUDED.ultimo_avistamiento
                 """;
         MapSqlParameterSource parametros = new MapSqlParameterSource()
                 .addValue("idProducto", ficha.getIdProducto())

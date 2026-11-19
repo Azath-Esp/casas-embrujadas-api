@@ -39,7 +39,8 @@ public class BoletaRepositoryJdbc implements BoletaRepository {
 
     @Override
     public int siguienteNumero() {
-        Integer numero = jdbc.queryForObject("SELECT COALESCE(MAX(numero), 0) + 1 FROM boleta FOR UPDATE", Map.of(), Integer.class);
+        jdbc.getJdbcOperations().execute("LOCK TABLE boleta IN EXCLUSIVE MODE");
+        Integer numero = jdbc.queryForObject("SELECT COALESCE(MAX(numero), 0) + 1 FROM boleta", Map.of(), Integer.class);
         return numero == null ? 1 : numero;
     }
 
@@ -58,7 +59,7 @@ public class BoletaRepositoryJdbc implements BoletaRepository {
                 .addValue("estado", boleta.getEstado().name())
                 .addValue("idUsuario", boleta.getIdUsuario());
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update(sql, parametros, llave);
+        jdbc.update(sql, parametros, llave, new String[] {"id_boleta"});
         return llave.getKey().longValue();
     }
 

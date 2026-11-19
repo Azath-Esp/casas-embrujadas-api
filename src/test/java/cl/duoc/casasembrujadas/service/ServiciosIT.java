@@ -118,7 +118,7 @@ class ServiciosIT {
     @Test
     void unaReservaVencidaExpiraYLiberaLaCasa() {
         assertEquals(0, reservaService.expirarVencidas());
-        jdbcTemplate.update("UPDATE reserva SET fecha_inicio = NOW() - INTERVAL 2 DAY, fecha_expiracion = NOW() - INTERVAL 1 DAY WHERE id_reserva = 4");
+        jdbcTemplate.update("UPDATE reserva SET fecha_inicio = LOCALTIMESTAMP - INTERVAL '2 days', fecha_expiracion = LOCALTIMESTAMP - INTERVAL '1 day' WHERE id_reserva = 4");
 
         assertEquals(1, reservaService.expirarVencidas());
 
@@ -128,7 +128,7 @@ class ServiciosIT {
 
     @Test
     void comprarRevisaLaExpiracionAunqueElSchedulerNoHayaPasado() {
-        jdbcTemplate.update("UPDATE reserva SET fecha_inicio = NOW() - INTERVAL 2 DAY, fecha_expiracion = NOW() - INTERVAL 1 DAY WHERE id_reserva = 4");
+        jdbcTemplate.update("UPDATE reserva SET fecha_inicio = LOCALTIMESTAMP - INTERVAL '2 days', fecha_expiracion = LOCALTIMESTAMP - INTERVAL '1 day' WHERE id_reserva = 4");
 
         BoletaResponse boleta = boletaService.comprar(5L, carrito(8L));
 

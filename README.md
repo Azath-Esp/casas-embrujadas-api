@@ -7,7 +7,7 @@ Autor: Dinko Ocampo
 ## Stack
 
 - Java 21 y Spring Boot 4.1
-- MySQL 8
+- PostgreSQL 17 en Neon
 - JDBC con JdbcTemplate
 - Spring Security con JWT
 - Swagger (springdoc-openapi)
@@ -15,27 +15,25 @@ Autor: Dinko Ocampo
 ## Requisitos
 
 - JDK 21 con la variable JAVA_HOME configurada
-- MySQL 8 en ejecución
+- Un proyecto en Neon (neon.tech) con la base casas_embrujadas
 - No se necesita instalar Maven: el proyecto incluye Maven Wrapper
 
 ## Instalación
 
-1. Crear la base de datos y el usuario de la aplicación, como root:
+1. En la consola de Neon, crear el proyecto (PostgreSQL 17, región AWS US East 1) y la base `casas_embrujadas`.
+
+2. En el SQL Editor de Neon, con el rol dueño de la base, ejecutar `database/schema.sql` y luego `database/data.sql`.
+
+3. En el mismo SQL Editor, crear el rol de la aplicación con permisos solo sobre los datos:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS casas_embrujadas CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-CREATE USER IF NOT EXISTS 'casas_app'@'localhost' IDENTIFIED BY 'una_clave_propia';
-GRANT SELECT, INSERT, UPDATE, DELETE ON casas_embrujadas.* TO 'casas_app'@'localhost';
+CREATE ROLE casas_app WITH LOGIN PASSWORD 'una_clave_larga_y_aleatoria';
+GRANT USAGE ON SCHEMA public TO casas_app;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO casas_app;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO casas_app;
 ```
 
-2. Crear las tablas y cargar los datos, como root, desde la carpeta del proyecto:
-
-```
-mysql -u root -p --default-character-set=utf8mb4 -e "source database/schema.sql"
-mysql -u root -p --default-character-set=utf8mb4 -e "source database/data.sql"
-```
-
-3. Copiar `.env.example` como `.env` y completar la contraseña de la base y el secreto JWT.
+4. Copiar `.env.example` como `.env` y completar la URL de Neon, la contraseña de `casas_app` y el secreto JWT.
 
 ## Ejecución
 
@@ -54,7 +52,7 @@ Pruebas unitarias, no necesitan base de datos:
 .\mvnw test
 ```
 
-Pruebas de integración de los repositorios, de las reglas de negocio y de los controllers. Necesitan MySQL en ejecución con los datos de `database/data.sql` recién cargados. Cada prueba deshace sus cambios al terminar:
+Pruebas de integración de los repositorios y de las reglas de negocio. Necesitan el `.env` apuntando a la rama `dev` de Neon con los datos de `database/data.sql` (Reset from parent la deja así). Cada prueba deshace sus cambios al terminar:
 
 ```
 .\mvnw test "-Dtest=RepositoriosIT,ServiciosIT,ControllersIT"

@@ -34,7 +34,7 @@ public class FavoritoRepositoryJdbc implements FavoritoRepository {
 
     @Override
     public void agregar(Long idUsuario, Long idProducto) {
-        jdbc.update("INSERT IGNORE INTO favorito (id_usuario, id_producto) VALUES (:idUsuario, :idProducto)",
+        jdbc.update("INSERT INTO favorito (id_usuario, id_producto) VALUES (:idUsuario, :idProducto) ON CONFLICT DO NOTHING",
                 Map.of("idUsuario", idUsuario, "idProducto", idProducto));
     }
 

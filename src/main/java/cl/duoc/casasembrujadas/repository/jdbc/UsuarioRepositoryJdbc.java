@@ -74,7 +74,7 @@ public class UsuarioRepositoryJdbc implements UsuarioRepository {
                 .addValue("rol", usuario.getRol().name())
                 .addValue("activo", usuario.isActivo());
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update(sql, parametros, llave);
+        jdbc.update(sql, parametros, llave, new String[] {"id_usuario"});
         return llave.getKey().longValue();
     }
 
