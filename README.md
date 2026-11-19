@@ -55,7 +55,7 @@ Pruebas unitarias, no necesitan base de datos:
 Pruebas de integración de los repositorios y de las reglas de negocio. Necesitan el `.env` apuntando a la rama `dev` de Neon con los datos de `database/data.sql` (Reset from parent la deja así). Cada prueba deshace sus cambios al terminar:
 
 ```
-.\mvnw test "-Dtest=RepositoriosIT,ServiciosIT,ControllersIT"
+.\mvnw test "-Dtest=RepositoriosIT,ServiciosIT,ControllersIT,SeguridadIT"
 ```
 
 ## Usuarios de prueba

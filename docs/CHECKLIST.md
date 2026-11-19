@@ -27,11 +27,11 @@ Evaluación Parcial 3 Desarrollo Full Stack II. Autor: Dinko Ocampo.
 
 ### Seguridad
 
-- [ ] Spring Security con autenticación por roles
-- [ ] JWT
-- [ ] ADMINISTRADOR con acceso total
-- [ ] VENDEDOR solo ve lista y detalle de productos y de boletas, en frontend y backend
-- [ ] CLIENTE solo accede a la tienda
+- [x] Spring Security con autenticación por roles
+- [x] JWT
+- [x] ADMINISTRADOR con acceso total
+- [ ] VENDEDOR solo ve lista y detalle de productos y de boletas, en frontend y backend (backend listo)
+- [ ] CLIENTE solo accede a la tienda (backend listo)
 
 ### Integración
 
