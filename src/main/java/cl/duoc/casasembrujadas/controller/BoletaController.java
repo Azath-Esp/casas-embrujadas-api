@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 @RestController
@@ -78,6 +79,7 @@ public class BoletaController {
     }
 
     @PutMapping("/{id}/estado")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Cambia el estado de una boleta", description = "Solo ADMIN. Anular devuelve sus casas a DISPONIBLE.")
     @ApiResponse(responseCode = "200", description = "Estado cambiado")
     @ApiResponse(responseCode = "404", description = "No existe",
