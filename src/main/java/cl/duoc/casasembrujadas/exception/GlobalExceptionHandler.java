@@ -12,6 +12,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -21,7 +25,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
-
 
 @Slf4j
 @RestControllerAdvice
@@ -58,6 +61,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ErrorResponse> parametroFaltante(MissingServletRequestParameterException ex, HttpServletRequest request) {
         return responder(HttpStatus.BAD_REQUEST, "Falta el parámetro '" + ex.getParameterName() + "'", request, List.of());
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ErrorResponse> noAutenticado(AuthenticationException ex, HttpServletRequest request) {
+        String mensaje = "Debes iniciar sesión para acceder a este recurso";
+        if (ex instanceof BadCredentialsException) {
+            mensaje = "Correo o contraseña incorrectos";
+        } else if (ex instanceof DisabledException) {
+            mensaje = "La cuenta está desactivada";
+        }
+        return responder(HttpStatus.UNAUTHORIZED, mensaje, request, List.of());
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> sinPermiso(AccessDeniedException ex, HttpServletRequest request) {
+        return responder(HttpStatus.FORBIDDEN, "No tienes permiso para realizar esta acción", request, List.of());
     }
 
     @ExceptionHandler(RecursoNoEncontradoException.class)
