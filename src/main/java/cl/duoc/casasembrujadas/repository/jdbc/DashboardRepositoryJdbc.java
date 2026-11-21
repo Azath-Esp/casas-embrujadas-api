@@ -27,10 +27,10 @@ public class DashboardRepositoryJdbc implements DashboardRepository {
     @Override
     public List<VentaMensualResponse> ventasPorMes(LocalDateTime desde) {
         String sql = """
-                SELECT DATE_FORMAT(b.fecha, '%Y-%m') AS mes, COUNT(*) AS ventas, SUM(b.total) AS ingresos
+                SELECT to_char(b.fecha, 'YYYY-MM') AS mes, COUNT(*) AS ventas, SUM(b.total) AS ingresos
                 FROM boleta b
                 WHERE b.estado = 'PAGADA' AND b.fecha >= :desde
-                GROUP BY DATE_FORMAT(b.fecha, '%Y-%m')
+                GROUP BY to_char(b.fecha, 'YYYY-MM')
                 ORDER BY mes
                 """;
         return jdbc.query(sql, Map.of("desde", desde), (rs, fila) -> VentaMensualResponse.builder()

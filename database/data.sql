@@ -1,6 +1,3 @@
-SET NAMES utf8mb4;
-USE casas_embrujadas;
-
 INSERT INTO rol (id_rol, nombre) VALUES
 (1, 'ADMIN'),
 (2, 'VENDEDOR'),
@@ -57,12 +54,12 @@ INSERT INTO comuna (id_comuna, nombre, id_region) VALUES
 (30, 'Punta Arenas', 16);
 
 INSERT INTO usuario (id_usuario, run, nombre, apellidos, correo, contrasena, direccion, id_comuna, id_rol, activo, fecha_registro) VALUES
-(1, '11111111-1', 'Isidora', 'Vega Rojas', 'admin@casasembrujadas.cl', '$2a$10$LUSqdrJb/r56wCeYgjLhs.1B8xRNIP9evLjqLL145wtfAl6M6b7xC', 'Moneda 1010', 10, 1, TRUE, NOW() - INTERVAL 10 MONTH),
-(2, '22222222-2', 'Matías', 'Soto Fuentes', 'vendedor@casasembrujadas.cl', '$2a$10$RO0rxJaXZDJvrggROjAn3ehhrNzD9iv0TPluHED9ubEhhOJeSO4gO', 'Av. Matta 520', 10, 2, TRUE, NOW() - INTERVAL 9 MONTH),
-(3, '33333333-3', 'Camila', 'Reyes Pinto', 'cliente@casasembrujadas.cl', '$2a$10$e8/RSd1WPifVXLJnYrefI.D8wQIxm4PGR5apTznj7G78X9ZFjP3vO', 'Av. Italia 1200', 11, 3, TRUE, NOW() - INTERVAL 8 MONTH),
-(4, '44444444-4', 'Benjamín', 'Torres Muñoz', 'benjamin.torres@casasembrujadas.cl', '$2a$10$mSP9Fm2mEaO70HX9mdCq0.TJsqfQqV7iSRlD9DTawMeeei3fbN8d2', 'Cerro Alegre 45', 7, 3, TRUE, NOW() - INTERVAL 7 MONTH),
-(5, '55555555-5', 'Antonia', 'Herrera Díaz', 'antonia.herrera@casasembrujadas.cl', '$2a$10$PTnHiMp/rGsLgs93f6Bb8ucQKndcXXRfeclER/oipHKqKtg0MRh4m', 'Barros Arana 880', 23, 3, TRUE, NOW() - INTERVAL 6 MONTH),
-(6, '66666666-6', 'Tomás', 'Fuentealba Lagos', 'tomas.fuentealba@casasembrujadas.cl', '$2a$10$noagMj.Dqp3IgN3r1Uz7u.dEnR70bNXtUlRUZHK4vF8m57VhBWgTO', 'Blanco 310', 28, 3, TRUE, NOW() - INTERVAL 5 MONTH);
+(1, '11111111-1', 'Isidora', 'Vega Rojas', 'admin@casasembrujadas.cl', '$2a$10$LUSqdrJb/r56wCeYgjLhs.1B8xRNIP9evLjqLL145wtfAl6M6b7xC', 'Moneda 1010', 10, 1, TRUE, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '10 months'),
+(2, '22222222-2', 'Matías', 'Soto Fuentes', 'vendedor@casasembrujadas.cl', '$2a$10$RO0rxJaXZDJvrggROjAn3ehhrNzD9iv0TPluHED9ubEhhOJeSO4gO', 'Av. Matta 520', 10, 2, TRUE, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '9 months'),
+(3, '33333333-3', 'Camila', 'Reyes Pinto', 'cliente@casasembrujadas.cl', '$2a$10$e8/RSd1WPifVXLJnYrefI.D8wQIxm4PGR5apTznj7G78X9ZFjP3vO', 'Av. Italia 1200', 11, 3, TRUE, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '8 months'),
+(4, '44444444-4', 'Benjamín', 'Torres Muñoz', 'benjamin.torres@casasembrujadas.cl', '$2a$10$mSP9Fm2mEaO70HX9mdCq0.TJsqfQqV7iSRlD9DTawMeeei3fbN8d2', 'Cerro Alegre 45', 7, 3, TRUE, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '7 months'),
+(5, '55555555-5', 'Antonia', 'Herrera Díaz', 'antonia.herrera@casasembrujadas.cl', '$2a$10$PTnHiMp/rGsLgs93f6Bb8ucQKndcXXRfeclER/oipHKqKtg0MRh4m', 'Barros Arana 880', 23, 3, TRUE, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '6 months'),
+(6, '66666666-6', 'Tomás', 'Fuentealba Lagos', 'tomas.fuentealba@casasembrujadas.cl', '$2a$10$noagMj.Dqp3IgN3r1Uz7u.dEnR70bNXtUlRUZHK4vF8m57VhBWgTO', 'Blanco 310', 28, 3, TRUE, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '5 months');
 
 INSERT INTO categoria (id_categoria, nombre, descripcion) VALUES
 (1, 'Palacios y casonas', 'Residencias históricas con pasado ilustre y visitas que nadie invitó.'),
@@ -75,19 +72,19 @@ INSERT INTO categoria (id_categoria, nombre, descripcion) VALUES
 (8, 'Faros y fuertes', 'Categoría en preparación: todavía no tiene lugares asociados.');
 
 INSERT INTO producto (id_producto, titulo, descripcion, precio, direccion, metros_cuadrados, dormitorios, banos, nivel_embrujo, estado, latitud, longitud, fecha_publicacion, id_comuna) VALUES
-(1, 'Casona Dubois', 'Casona de comienzos del siglo XX rodeada de un parque, hoy centro cultural de la Municipalidad de Quinta Normal. Su gárgola, perdida durante décadas, volvió a su sitio en 2026. Ideal para quien busca jardín amplio y una leyenda de fertilidad con final trágico.', 1250000000, 'Ayuntamiento 1650', 650, 9, 4, 5, 'DISPONIBLE', -33.428288, -70.703004, NOW() - INTERVAL 240 DAY, 13),
-(2, 'Biblioteca Nacional', 'Edificio monumental de la Alameda levantado sobre el terreno del antiguo convento de las monjas clarisas. Salones de lectura, depósitos de libros y pasillos donde, según los relatos, de noche se ven sombras. Se entrega con silencio garantizado.', 24500000000, 'Av. Libertador Bernardo O''Higgins 651', 20000, 0, 26, 3, 'DISPONIBLE', -33.442064, -70.645665, NOW() - INTERVAL 235 DAY, 10),
-(3, 'Ex Hospital San José', 'Antiguo lazareto construido entre 1841 y 1872 junto al Cementerio General y declarado Monumento Histórico en 1999. Pabellones, capilla y largos corredores que terminan en el muro del cementerio. Vecinos muy tranquilos.', 6800000000, 'San José 1053', 9500, 120, 30, 5, 'DISPONIBLE', -33.414398, -70.653490, NOW() - INTERVAL 230 DAY, 12),
-(4, 'Oficina Salitrera Humberstone', 'Pueblo salitrero abandonado en 1960 y declarado Patrimonio de la Humanidad en 2005 junto a Santa Laura. Incluye teatro, iglesia, hotel y calles completas en pleno desierto de Tarapacá. Los trabajadores del museo prefieren no acercarse al establo.', 9900000000, 'Ruta A-16, a 48 km de Iquique', 450000, 300, 60, 4, 'DISPONIBLE', -20.208581, -69.795474, NOW() - INTERVAL 225 DAY, 3),
-(5, 'Cueva de Quicaví', 'Según la tradición chilota, la Casa Grande es la cueva donde sesionaba la Recta Provincia, la sociedad de brujos juzgada en Ancud en 1880. Nadie ha confirmado su ubicación exacta, así que se vende con las coordenadas del pueblo de Quicaví. Sin baños, sin ventanas y con vecinos reservados.', 320000000, 'Sector Quicaví', 400, 1, 0, 5, 'DISPONIBLE', -42.272079, -73.351852, NOW() - INTERVAL 220 DAY, 27),
-(6, 'Palacio Cousiño', 'Palacio construido entre 1875 y 1878 por el arquitecto Paul Lathoud para la familia Cousiño Goyenechea, que vivió en él hasta 1928. Hoy es museo y Monumento Histórico. Salones de época, jardines diseñados por un paisajista y una dueña de casa que, dicen, nunca se fue.', 8400000000, 'Dieciocho 438', 2900, 12, 8, 3, 'DISPONIBLE', -33.452174, -70.656656, NOW() - INTERVAL 215 DAY, 10),
-(7, 'Casona El Molino', 'Casona colonial en ruinas junto al que se considera el primer molino de Chile. Perteneció a Catalina de los Ríos y Lisperguer, la Quintrala, y después a Mateo de Toro Zambrano. La Municipalidad de Graneros la adquirió para convertirla en museo. Requiere restauración completa y cierto valor.', 480000000, 'Graneros (ubicación aproximada)', 1100, 10, 3, 4, 'VENDIDA', -34.064474, -70.726298, NOW() - INTERVAL 210 DAY, 20),
-(8, 'Teatro Municipal de Santiago', 'Teatro inaugurado en 1857, destruido por un incendio en 1870 y vuelto a levantar. Sala principal, foso de orquesta y camarines. Los artistas que lo desafían en escena suelen arrepentirse.', 18700000000, 'Agustinas 794', 11000, 0, 40, 2, 'RESERVADA', -33.441167, -70.647567, NOW() - INTERVAL 205 DAY, 10),
-(9, 'Oficina Salitrera Santa Laura', 'La oficina hermana de Humberstone, a un par de kilómetros, con sus estructuras industriales todavía en pie. Patrimonio de la Humanidad desde 2005. Para quien prefiere un pueblo fantasma más íntimo.', 3600000000, 'Ruta A-16, frente a Humberstone', 120000, 80, 12, 3, 'VENDIDA', -20.210600, -69.815163, NOW() - INTERVAL 200 DAY, 3),
-(10, 'Isla Aucar', 'Islote unido a la Isla Grande de Chiloé por una pasarela de madera de unos 500 metros. Tiene capilla, cementerio y jardín botánico. Francisco Coloane la llamó la isla de las almas navegantes.', 750000000, 'Aucar, a 6 km de Quemchi', 15000, 0, 1, 2, 'VENDIDA', -42.161470, -73.479318, NOW() - INTERVAL 195 DAY, 27),
-(11, 'Palacio Echeverría', 'Casona de 1910 en el sector de Barrio Italia donde vivió la escritora Inés Echeverría, Iris, y donde se realizaban sesiones espiritistas. La prensa la llama la casa de los espíritus. En la vida real también está a la venta.', 1480000000, 'Sector Barrio Italia (dirección aproximada)', 900, 14, 6, 4, 'DISPONIBLE', -33.445500, -70.624500, NOW() - INTERVAL 190 DAY, 11),
-(12, 'Bodega Casillero del Diablo', 'Bodega subterránea de la viña que Melchor de Concha y Toro fundó en Pirque en 1883. Para frenar el robo de sus mejores botellas, el dueño hizo correr la voz de que ahí abajo vivía el Diablo. Temperatura estable todo el año.', 2900000000, 'Av. Virginia Subercaseaux 210', 1800, 0, 2, 3, 'INACTIVA', -33.635577, -70.574547, NOW() - INTERVAL 185 DAY, 14),
-(13, 'Palacio de Piedra Rosa', 'Palacio de piedra rosa que, según la leyenda de Quintero, se levanta en otra dimensión en medio de la bahía Papagayo. Solo lo ve quien cree y mira con atención. La foto muestra la playa: el palacio no sale en cámara.', 5555000000, 'Playa El Papagayo', 3300, 33, 11, 5, 'VENDIDA', -32.779218, -71.534164, NOW() - INTERVAL 180 DAY, 9);
+(1, 'Casona Dubois', 'Casona de comienzos del siglo XX rodeada de un parque, hoy centro cultural de la Municipalidad de Quinta Normal. Su gárgola, perdida durante décadas, volvió a su sitio en 2026. Ideal para quien busca jardín amplio y una leyenda de fertilidad con final trágico.', 1250000000, 'Ayuntamiento 1650', 650, 9, 4, 5, 'DISPONIBLE', -33.428288, -70.703004, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '240 days', 13),
+(2, 'Biblioteca Nacional', 'Edificio monumental de la Alameda levantado sobre el terreno del antiguo convento de las monjas clarisas. Salones de lectura, depósitos de libros y pasillos donde, según los relatos, de noche se ven sombras. Se entrega con silencio garantizado.', 24500000000, 'Av. Libertador Bernardo O''Higgins 651', 20000, 0, 26, 3, 'DISPONIBLE', -33.442064, -70.645665, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '235 days', 10),
+(3, 'Ex Hospital San José', 'Antiguo lazareto construido entre 1841 y 1872 junto al Cementerio General y declarado Monumento Histórico en 1999. Pabellones, capilla y largos corredores que terminan en el muro del cementerio. Vecinos muy tranquilos.', 6800000000, 'San José 1053', 9500, 120, 30, 5, 'DISPONIBLE', -33.414398, -70.653490, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '230 days', 12),
+(4, 'Oficina Salitrera Humberstone', 'Pueblo salitrero abandonado en 1960 y declarado Patrimonio de la Humanidad en 2005 junto a Santa Laura. Incluye teatro, iglesia, hotel y calles completas en pleno desierto de Tarapacá. Los trabajadores del museo prefieren no acercarse al establo.', 9900000000, 'Ruta A-16, a 48 km de Iquique', 450000, 300, 60, 4, 'DISPONIBLE', -20.208581, -69.795474, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '225 days', 3),
+(5, 'Cueva de Quicaví', 'Según la tradición chilota, la Casa Grande es la cueva donde sesionaba la Recta Provincia, la sociedad de brujos juzgada en Ancud en 1880. Nadie ha confirmado su ubicación exacta, así que se vende con las coordenadas del pueblo de Quicaví. Sin baños, sin ventanas y con vecinos reservados.', 320000000, 'Sector Quicaví', 400, 1, 0, 5, 'DISPONIBLE', -42.272079, -73.351852, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '220 days', 27),
+(6, 'Palacio Cousiño', 'Palacio construido entre 1875 y 1878 por el arquitecto Paul Lathoud para la familia Cousiño Goyenechea, que vivió en él hasta 1928. Hoy es museo y Monumento Histórico. Salones de época, jardines diseñados por un paisajista y una dueña de casa que, dicen, nunca se fue.', 8400000000, 'Dieciocho 438', 2900, 12, 8, 3, 'DISPONIBLE', -33.452174, -70.656656, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '215 days', 10),
+(7, 'Casona El Molino', 'Casona colonial en ruinas junto al que se considera el primer molino de Chile. Perteneció a Catalina de los Ríos y Lisperguer, la Quintrala, y después a Mateo de Toro Zambrano. La Municipalidad de Graneros la adquirió para convertirla en museo. Requiere restauración completa y cierto valor.', 480000000, 'Graneros (ubicación aproximada)', 1100, 10, 3, 4, 'VENDIDA', -34.064474, -70.726298, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '210 days', 20),
+(8, 'Teatro Municipal de Santiago', 'Teatro inaugurado en 1857, destruido por un incendio en 1870 y vuelto a levantar. Sala principal, foso de orquesta y camarines. Los artistas que lo desafían en escena suelen arrepentirse.', 18700000000, 'Agustinas 794', 11000, 0, 40, 2, 'RESERVADA', -33.441167, -70.647567, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '205 days', 10),
+(9, 'Oficina Salitrera Santa Laura', 'La oficina hermana de Humberstone, a un par de kilómetros, con sus estructuras industriales todavía en pie. Patrimonio de la Humanidad desde 2005. Para quien prefiere un pueblo fantasma más íntimo.', 3600000000, 'Ruta A-16, frente a Humberstone', 120000, 80, 12, 3, 'VENDIDA', -20.210600, -69.815163, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '200 days', 3),
+(10, 'Isla Aucar', 'Islote unido a la Isla Grande de Chiloé por una pasarela de madera de unos 500 metros. Tiene capilla, cementerio y jardín botánico. Francisco Coloane la llamó la isla de las almas navegantes.', 750000000, 'Aucar, a 6 km de Quemchi', 15000, 0, 1, 2, 'VENDIDA', -42.161470, -73.479318, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '195 days', 27),
+(11, 'Palacio Echeverría', 'Casona de 1910 en el sector de Barrio Italia donde vivió la escritora Inés Echeverría, Iris, y donde se realizaban sesiones espiritistas. La prensa la llama la casa de los espíritus. En la vida real también está a la venta.', 1480000000, 'Sector Barrio Italia (dirección aproximada)', 900, 14, 6, 4, 'DISPONIBLE', -33.445500, -70.624500, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '190 days', 11),
+(12, 'Bodega Casillero del Diablo', 'Bodega subterránea de la viña que Melchor de Concha y Toro fundó en Pirque en 1883. Para frenar el robo de sus mejores botellas, el dueño hizo correr la voz de que ahí abajo vivía el Diablo. Temperatura estable todo el año.', 2900000000, 'Av. Virginia Subercaseaux 210', 1800, 0, 2, 3, 'INACTIVA', -33.635577, -70.574547, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '185 days', 14),
+(13, 'Palacio de Piedra Rosa', 'Palacio de piedra rosa que, según la leyenda de Quintero, se levanta en otra dimensión en medio de la bahía Papagayo. Solo lo ve quien cree y mira con atención. La foto muestra la playa: el palacio no sale en cámara.', 5555000000, 'Playa El Papagayo', 3300, 33, 11, 5, 'VENDIDA', -32.779218, -71.534164, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '180 days', 9);
 
 INSERT INTO producto_categoria (id_producto, id_categoria) VALUES
 (1, 1), (1, 6),
@@ -165,32 +162,32 @@ INSERT INTO ficha_paranormal (id_producto, tipo_entidad, horario_actividad, feno
 (13, 'Portal dimensional', 'De noche', 'Palacio visible solo para quien cree; portal a una dimensión paralela.', '2025-10-30');
 
 INSERT INTO favorito (id_usuario, id_producto, fecha) VALUES
-(3, 6, NOW() - INTERVAL 40 DAY),
-(3, 1, NOW() - INTERVAL 38 DAY),
-(3, 5, NOW() - INTERVAL 20 DAY),
-(3, 8, NOW() - INTERVAL 2 DAY),
-(4, 6, NOW() - INTERVAL 60 DAY),
-(4, 4, NOW() - INTERVAL 45 DAY),
-(4, 13, NOW() - INTERVAL 35 DAY),
-(5, 6, NOW() - INTERVAL 90 DAY),
-(5, 1, NOW() - INTERVAL 25 DAY),
-(5, 3, NOW() - INTERVAL 12 DAY),
-(6, 5, NOW() - INTERVAL 70 DAY),
-(6, 6, NOW() - INTERVAL 15 DAY),
-(6, 4, NOW() - INTERVAL 14 DAY),
-(6, 10, NOW() - INTERVAL 5 DAY);
+(3, 6, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '40 days'),
+(3, 1, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '38 days'),
+(3, 5, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '20 days'),
+(3, 8, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '2 days'),
+(4, 6, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '60 days'),
+(4, 4, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '45 days'),
+(4, 13, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '35 days'),
+(5, 6, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '90 days'),
+(5, 1, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '25 days'),
+(5, 3, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '12 days'),
+(6, 5, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '70 days'),
+(6, 6, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '15 days'),
+(6, 4, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '14 days'),
+(6, 10, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '5 days');
 
 INSERT INTO reserva (id_reserva, id_producto, id_usuario, fecha_inicio, fecha_expiracion, estado) VALUES
-(1, 13, 4, NOW() - INTERVAL 32 DAY, NOW() - INTERVAL 31 DAY, 'CONVERTIDA'),
-(2, 1, 5, NOW() - INTERVAL 20 DAY, NOW() - INTERVAL 19 DAY, 'EXPIRADA'),
-(3, 6, 6, NOW() - INTERVAL 10 DAY, NOW() - INTERVAL 9 DAY, 'CANCELADA'),
-(4, 8, 3, NOW() - INTERVAL 4 HOUR, NOW() + INTERVAL 20 HOUR, 'ACTIVA');
+(1, 13, 4, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '32 days', (now() AT TIME ZONE 'America/Santiago') - INTERVAL '31 days', 'CONVERTIDA'),
+(2, 1, 5, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '20 days', (now() AT TIME ZONE 'America/Santiago') - INTERVAL '19 days', 'EXPIRADA'),
+(3, 6, 6, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '10 days', (now() AT TIME ZONE 'America/Santiago') - INTERVAL '9 days', 'CANCELADA'),
+(4, 8, 3, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '4 hours', (now() AT TIME ZONE 'America/Santiago') + INTERVAL '20 hours', 'ACTIVA');
 
 INSERT INTO boleta (id_boleta, numero, fecha, neto, iva, total, estado, id_usuario) VALUES
-(1, 1, NOW() - INTERVAL 6 MONTH, 750000000, 142500000, 892500000, 'PAGADA', 3),
-(2, 2, NOW() - INTERVAL 4 MONTH, 4080000000, 775200000, 4855200000, 'PAGADA', 6),
-(3, 3, NOW() - INTERVAL 3 MONTH, 1480000000, 281200000, 1761200000, 'ANULADA', 5),
-(4, 4, NOW() - INTERVAL 31 DAY + INTERVAL 2 HOUR, 5555000000, 1055450000, 6610450000, 'PAGADA', 4);
+(1, 1, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '6 months', 750000000, 142500000, 892500000, 'PAGADA', 3),
+(2, 2, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '4 months', 4080000000, 775200000, 4855200000, 'PAGADA', 6),
+(3, 3, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '3 months', 1480000000, 281200000, 1761200000, 'ANULADA', 5),
+(4, 4, (now() AT TIME ZONE 'America/Santiago') - INTERVAL '31 days' + INTERVAL '2 hours', 5555000000, 1055450000, 6610450000, 'PAGADA', 4);
 
 INSERT INTO detalle_boleta (id_boleta, id_producto, cantidad, precio_unitario, subtotal) VALUES
 (1, 10, 1, 750000000, 750000000),
@@ -198,3 +195,15 @@ INSERT INTO detalle_boleta (id_boleta, id_producto, cantidad, precio_unitario, s
 (2, 9, 1, 3600000000, 3600000000),
 (3, 11, 1, 1480000000, 1480000000),
 (4, 13, 1, 5555000000, 5555000000);
+
+SELECT setval(pg_get_serial_sequence('rol', 'id_rol'), (SELECT MAX(id_rol) FROM rol));
+SELECT setval(pg_get_serial_sequence('region', 'id_region'), (SELECT MAX(id_region) FROM region));
+SELECT setval(pg_get_serial_sequence('comuna', 'id_comuna'), (SELECT MAX(id_comuna) FROM comuna));
+SELECT setval(pg_get_serial_sequence('usuario', 'id_usuario'), (SELECT MAX(id_usuario) FROM usuario));
+SELECT setval(pg_get_serial_sequence('categoria', 'id_categoria'), (SELECT MAX(id_categoria) FROM categoria));
+SELECT setval(pg_get_serial_sequence('producto', 'id_producto'), (SELECT MAX(id_producto) FROM producto));
+SELECT setval(pg_get_serial_sequence('imagen', 'id_imagen'), (SELECT MAX(id_imagen) FROM imagen));
+SELECT setval(pg_get_serial_sequence('mito', 'id_mito'), (SELECT MAX(id_mito) FROM mito));
+SELECT setval(pg_get_serial_sequence('reserva', 'id_reserva'), (SELECT MAX(id_reserva) FROM reserva));
+SELECT setval(pg_get_serial_sequence('boleta', 'id_boleta'), (SELECT MAX(id_boleta) FROM boleta));
+SELECT setval(pg_get_serial_sequence('detalle_boleta', 'id_detalle'), (SELECT MAX(id_detalle) FROM detalle_boleta));

@@ -36,7 +36,7 @@ public class CategoriaRepositoryJdbc implements CategoriaRepository {
                 .addValue("nombre", nombre)
                 .addValue("idExcluido", idExcluido == null ? -1 : idExcluido);
         Long total = jdbc.queryForObject(
-                "SELECT COUNT(*) FROM categoria WHERE nombre = :nombre AND id_categoria <> :idExcluido", parametros, Long.class);
+                "SELECT COUNT(*) FROM categoria WHERE lower(nombre) = lower(:nombre) AND id_categoria <> :idExcluido", parametros, Long.class);
         return total != null && total > 0;
     }
 
@@ -46,7 +46,8 @@ public class CategoriaRepositoryJdbc implements CategoriaRepository {
                 .addValue("nombre", categoria.getNombre())
                 .addValue("descripcion", categoria.getDescripcion());
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update("INSERT INTO categoria (nombre, descripcion) VALUES (:nombre, :descripcion)", parametros, llave);
+        jdbc.update("INSERT INTO categoria (nombre, descripcion) VALUES (:nombre, :descripcion)", parametros, llave,
+                new String[] {"id_categoria"});
         return llave.getKey().intValue();
     }
 

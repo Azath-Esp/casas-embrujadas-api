@@ -86,7 +86,7 @@ public class ProductoRepositoryJdbc implements ProductoRepository {
             where.append(" AND p.estado <> 'INACTIVA'");
         }
         if (filtro.getTexto() != null && !filtro.getTexto().isBlank()) {
-            where.append(" AND (p.titulo LIKE :texto OR p.descripcion LIKE :texto)");
+            where.append(" AND (unaccent(p.titulo) ILIKE unaccent(:texto) OR unaccent(p.descripcion) ILIKE unaccent(:texto))");
             parametros.addValue("texto", "%" + filtro.getTexto().trim() + "%");
         }
         return where.toString();
@@ -133,7 +133,7 @@ public class ProductoRepositoryJdbc implements ProductoRepository {
                         :nivelEmbrujo, :estado, :latitud, :longitud, :idComuna)
                 """;
         KeyHolder llave = new GeneratedKeyHolder();
-        jdbc.update(sql, parametrosDe(producto), llave);
+        jdbc.update(sql, parametrosDe(producto), llave, new String[] {"id_producto"});
         return llave.getKey().longValue();
     }
 
