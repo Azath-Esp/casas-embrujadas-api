@@ -48,8 +48,16 @@ mysql -u root -p --default-character-set=utf8mb4 -e "source database/data.sql"
 
 ## Pruebas
 
+Pruebas unitarias, no necesitan base de datos:
+
 ```
 .\mvnw test
+```
+
+Pruebas de integración de los repositorios. Necesitan MySQL en ejecución con los datos de `database/data.sql` recién cargados. Cada prueba deshace sus cambios al terminar:
+
+```
+.\mvnw test "-Dtest=RepositoriosIT"
 ```
 
 ## Usuarios de prueba
