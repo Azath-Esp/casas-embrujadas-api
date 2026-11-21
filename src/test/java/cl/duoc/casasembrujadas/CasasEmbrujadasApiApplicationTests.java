@@ -3,11 +3,6 @@ package cl.duoc.casasembrujadas;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-/**
- * Comprueba que el contexto de Spring arranca con la configuración del proyecto.
- *
- * @author Dinko Ocampo
- */
 @SpringBootTest(properties = {
 		"DB_URL=jdbc:postgresql://localhost:5432/casas_embrujadas",
 		"DB_USERNAME=prueba",

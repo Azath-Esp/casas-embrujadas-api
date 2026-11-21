@@ -1,7 +1,5 @@
 package cl.duoc.casasembrujadas.dto.validation;
 
-/** Operaciones sobre el RUN chileno: normalizar el formato y calcular el dígito verificador.
- */
 public final class RunUtils {
 
     private RunUtils() {

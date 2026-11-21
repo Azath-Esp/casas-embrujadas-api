@@ -9,11 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
 
-/**
- * Carrito de compra: los identificadores de las casas que se quieren comprar.
- *
- * @author Dinko Ocampo
- */
 @Data
 @Builder
 @NoArgsConstructor
