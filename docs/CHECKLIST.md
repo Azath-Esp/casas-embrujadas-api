@@ -46,11 +46,11 @@ Evaluación Parcial 3 Desarrollo Full Stack II. Autor: Dinko Ocampo.
 
 ## Funciones extra
 
-- [ ] Reservas de 24 horas con expiración automática
-- [ ] Favoritos
-- [ ] Comparador
-- [ ] Mapa
-- [ ] Dashboard
-- [ ] Boleta en PDF
+- [ ] Reservas de 24 horas con expiración automática (backend listo)
+- [ ] Favoritos (backend listo)
+- [ ] Comparador (backend listo)
+- [ ] Mapa (backend listo)
+- [ ] Dashboard (backend listo)
+- [ ] Boleta en PDF (backend listo)
 - [ ] Modo linterna
 - [ ] Sonido ambiente
