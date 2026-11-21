@@ -6,11 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
-/**
- * Casa guardada como favorita por un usuario.
- *
- * @author Dinko Ocampo
- */
 @Data
 @Builder
 @NoArgsConstructor

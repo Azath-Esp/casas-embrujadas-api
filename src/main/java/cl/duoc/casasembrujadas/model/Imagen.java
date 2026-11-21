@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**Imagen de una casa, con los datos de atribución de su licencia.*/
 @Data
 @Builder
 @NoArgsConstructor
