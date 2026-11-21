@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 @Slf4j
 @RestControllerAdvice
@@ -138,5 +139,15 @@ public class GlobalExceptionHandler {
                 .errores(errores)
                 .build();
         return ResponseEntity.status(estado).body(cuerpo);
+    }
+
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<ErrorResponse> validacionDeParametros(HandlerMethodValidationException ex, HttpServletRequest request) {
+        List<String> errores = ex.getParameterValidationResults().stream()
+                .flatMap(resultado -> resultado.getResolvableErrors().stream()
+                        .map(error -> resultado.getMethodParameter().getParameterName() + ": " + error.getDefaultMessage()))
+                .sorted()
+                .toList();
+        return responder(HttpStatus.BAD_REQUEST, "La solicitud tiene parámetros inválidos", request, errores);
     }
 }
