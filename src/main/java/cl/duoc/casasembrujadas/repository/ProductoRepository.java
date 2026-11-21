@@ -30,5 +30,7 @@ public interface ProductoRepository {
 
     boolean tieneBoletas(Long idProducto);
 
+    boolean tieneBoletaPagada(Long idProducto);
+
     void reemplazarCategorias(Long idProducto, List<Integer> idsCategorias);
 }
