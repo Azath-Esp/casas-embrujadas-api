@@ -68,9 +68,9 @@ public class BoletaController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Obtiene una boleta", description = "ADMIN y VENDEDOR ven cualquiera; un CLIENTE solo las suyas.")
+    @Operation(summary = "Obtiene una boleta", description = "ADMIN y VENDEDOR. Un CLIENTE ve sus boletas en /mis-boletas.")
     @ApiResponse(responseCode = "200", description = "La boleta con sus detalles")
-    @ApiResponse(responseCode = "403", description = "La boleta es de otro cliente",
+    @ApiResponse(responseCode = "403", description = "El usuario no es ADMIN ni VENDEDOR",
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "404", description = "No existe",
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
