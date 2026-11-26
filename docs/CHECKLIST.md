@@ -30,27 +30,27 @@ Evaluación Parcial 3 Desarrollo Full Stack II. Autor: Dinko Ocampo.
 - [x] Spring Security con autenticación por roles
 - [x] JWT
 - [x] ADMINISTRADOR con acceso total
-- [ ] VENDEDOR solo ve lista y detalle de productos y de boletas, en frontend y backend (backend listo)
-- [ ] CLIENTE solo accede a la tienda (backend listo)
+- [x] VENDEDOR solo ve lista y detalle de productos y de boletas, en frontend y backend
+- [x] CLIENTE solo accede a la tienda
 
 ### Integración
 
-- [ ] El frontend consume la API con axios
-- [ ] Manejo de datos y errores en cada vista
+- [x] El frontend consume la API con axios
+- [x] Manejo de datos y errores en cada vista
 
 ### Repositorios
 
-- [ ] Commits claros y coherentes
-- [ ] README en ambos repositorios
-- [ ] FUENTES.md con lugares, leyendas, imágenes y audio
+- [x] Commits claros y coherentes
+- [x] README en ambos repositorios
+- [x] FUENTES.md con lugares, leyendas, imágenes y audio
 
 ## Funciones extra
 
-- [ ] Reservas de 24 horas con expiración automática (backend listo)
-- [ ] Favoritos (backend listo)
-- [ ] Comparador (backend listo)
-- [ ] Mapa (backend listo)
-- [ ] Dashboard (backend listo)
-- [ ] Boleta en PDF (backend listo)
-- [ ] Modo linterna
-- [ ] Sonido ambiente
+- [x] Reservas de 24 horas con expiración automática
+- [x] Favoritos
+- [x] Comparador
+- [x] Mapa
+- [x] Dashboard
+- [x] Boleta en PDF
+- [x] Modo linterna
+- [x] Sonido ambiente
