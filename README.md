@@ -7,8 +7,9 @@ API REST de la tienda ficticia "Casas Embrujadas", que "vende" lugares embrujado
 Autor: Dinko Ocampo
 
 - Repositorio del frontend: https://github.com/Azath-Esp/casas-embrujadas-frontend
-- API publicada: se agrega en el capítulo 20 (Render)
-- Documentación interactiva: `/swagger-ui.html`
+- API publicada: https://casas-embrujadas-api.onrender.com
+- Sitio publicado: https://casas-embrujadas-frontend.vercel.app
+- Documentación interactiva: https://casas-embrujadas-api.onrender.com/swagger-ui.html
 
 ## Stack
 
