@@ -1,0 +1,84 @@
+name: Pruebas del backend
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+env:
+  TZ: America/Santiago
+
+jobs:
+  unitarias:
+    name: Pruebas unitarias
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Ejecutar pruebas unitarias
+        run: |
+          chmod +x mvnw
+          ./mvnw -B test
+
+  integracion:
+    name: Pruebas de integración con PostgreSQL
+    runs-on: ubuntu-24.04
+    needs: unitarias
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: neondb_owner
+          POSTGRES_PASSWORD: clave_temporal_de_ci
+          POSTGRES_DB: casas_embrujadas
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U neondb_owner -d casas_embrujadas"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: neondb_owner
+      PGPASSWORD: clave_temporal_de_ci
+      PGDATABASE: casas_embrujadas
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Crear tablas, datos y rol de la aplicación
+        run: |
+          psql -v ON_ERROR_STOP=1 -q -f database/schema.sql
+          psql -v ON_ERROR_STOP=1 -q -f database/data.sql > /dev/null
+          psql -v ON_ERROR_STOP=1 -q <<'SQL'
+          CREATE ROLE casas_app WITH LOGIN PASSWORD 'clave_temporal_casas_app';
+          GRANT USAGE ON SCHEMA public TO casas_app;
+          GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO casas_app;
+          GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO casas_app;
+          SQL
+
+      - name: Ejecutar pruebas de integración
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/casas_embrujadas
+          DB_USERNAME: casas_app
+          DB_PASSWORD: clave_temporal_casas_app
+        run: |
+          chmod +x mvnw
+          export JWT_SECRET="$(openssl rand -base64 48)"
+          ./mvnw -B test "-Dtest=RepositoriosIT,ServiciosIT,ControllersIT,SeguridadIT,ExtrasIT"
